@@ -1,30 +1,70 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Дневник калорий</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Дневник Калорий</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <div class="container">
-        <h1>Дневник калорий</h1>
-        <form id="product-form">
-            <input type="text" id="name" placeholder="Название продукта" required>
-            <input type="number" id="cal" placeholder="Ккал/100г" required>
-            <input type="number" id="prot" placeholder="Белки/100г" required>
-            <input type="number" id="fat" placeholder="Жиры/100г" required>
-            <input type="number" id="carb" placeholder="Углеводы/100г" required>
-            <input type="number" id="weight" placeholder="Съедено (грамм)" required>
-            <button type="submit">Добавить</button>
-        </form>
-        <div id="summary">
-            <h2>Список за день</h2>
-            <ul id="product-list"></ul>
-            <h3>Итого:</h3>
-            <p id="totals">Ккал: 0, Белки: 0 г, Жиры: 0 г, Углеводы: 0 г</p>
-            <button id="clear">Очистить день</button>
-        </div>
+        <h1>Дневник Калорий</h1>
+
+        <nav>
+            <button onclick="showTab('log')">День</button>
+            <button onclick="showTab('favorites')">Избранные</button>
+            <button onclick="showTab('goals')">Цели</button>
+            <button onclick="showTab('history')">История</button>
+        </nav>
+
+        <section id="goalsTab" class="tab">
+            <h2>🎯 Цели (устанавливаются редко)</h2>
+            <label>Калории: <input type="number" id="goalCalories" /></label>
+            <label>Белки: <input type="number" id="goalProtein" /></label>
+            <label>Жиры: <input type="number" id="goalFat" /></label>
+            <label>Углеводы: <input type="number" id="goalCarbs" /></label>
+            <button onclick="saveGoals()">Сохранить цели</button>
+        </section>
+
+        <section id="logTab" class="tab">
+            <h2>Добавить продукт</h2>
+            <select id="mealType">
+                <option value="breakfast">Завтрак</option>
+                <option value="lunch">Обед</option>
+                <option value="dinner">Ужин</option>
+            </select>
+            <input type="text" id="name" placeholder="Название продукта" />
+            <input type="number" id="calories" placeholder="Ккал в 100г" />
+            <input type="number" id="protein" placeholder="Белки в 100г" />
+            <input type="number" id="fat" placeholder="Жиры в 100г" />
+            <input type="number" id="carbs" placeholder="Углеводы в 100г" />
+            <input type="number" id="weight" placeholder="Съедено (грамм)" />
+            <button onclick="addEntry()">Добавить</button>
+            <button onclick="addToFavorites()">☆ В избранное</button>
+
+            <h2>Итого за день</h2>
+            <div id="totals"></div>
+            <h3>Осталось:</h3>
+            <div id="remaining"></div>
+
+            <h2>Записи</h2>
+            <div id="entryList"></div>
+
+            <h2>✅ Чекпоинты</h2>
+            <div id="checkpoints" class="checkpoints"></div>
+
+            <button onclick="clearEntries()">Очистить день</button>
+        </section>
+
+        <section id="favoritesTab" class="tab">
+            <h2>Избранные продукты</h2>
+            <ul id="favoritesList"></ul>
+        </section>
+
+        <section id="historyTab" class="tab">
+            <h2>История</h2>
+            <ul id="historyList"></ul>
+        </section>
     </div>
     <script src="script.js"></script>
 </body>
