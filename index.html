@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дневник калорий</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Дневник калорий</h1>
+        <form id="product-form">
+            <input type="text" id="name" placeholder="Название продукта" required>
+            <input type="number" id="cal" placeholder="Ккал/100г" required>
+            <input type="number" id="prot" placeholder="Белки/100г" required>
+            <input type="number" id="fat" placeholder="Жиры/100г" required>
+            <input type="number" id="carb" placeholder="Углеводы/100г" required>
+            <input type="number" id="weight" placeholder="Съедено (грамм)" required>
+            <button type="submit">Добавить</button>
+        </form>
+        <div id="summary">
+            <h2>Список за день</h2>
+            <ul id="product-list"></ul>
+            <h3>Итого:</h3>
+            <p id="totals">Ккал: 0, Белки: 0 г, Жиры: 0 г, Углеводы: 0 г</p>
+            <button id="clear">Очистить день</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
